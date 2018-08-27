@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6C94B21B132413E6D0951A54 /* libPods-TZImagePreviewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1418F5154E510D4AF8F71F75 /* libPods-TZImagePreviewController.a */; };
+		9024661C2134394100C45621 /* TZImagePreviewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9024661A2134394100C45621 /* TZImagePreviewController.podspec */; };
+		9024661D2134394100C45621 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9024661B2134394100C45621 /* README.md */; };
 		90F383A8212EBB2200D92DD1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F383A7212EBB2200D92DD1 /* AppDelegate.m */; };
 		90F383AB212EBB2200D92DD1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F383AA212EBB2200D92DD1 /* ViewController.m */; };
 		90F383B0212EBB2300D92DD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90F383AF212EBB2300D92DD1 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 /* Begin PBXFileReference section */
 		1418F5154E510D4AF8F71F75 /* libPods-TZImagePreviewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TZImagePreviewController.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD7270A23BD359688957D14 /* Pods-TZImagePreviewController.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TZImagePreviewController.release.xcconfig"; path = "Pods/Target Support Files/Pods-TZImagePreviewController/Pods-TZImagePreviewController.release.xcconfig"; sourceTree = "<group>"; };
+		9024661A2134394100C45621 /* TZImagePreviewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TZImagePreviewController.podspec; sourceTree = SOURCE_ROOT; };
+		9024661B2134394100C45621 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		90F383A3212EBB2200D92DD1 /* TZImagePreviewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TZImagePreviewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90F383A6212EBB2200D92DD1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		90F383A7212EBB2200D92DD1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 				90F383B1212EBB2300D92DD1 /* LaunchScreen.storyboard */,
 				90F383B4212EBB2300D92DD1 /* Info.plist */,
 				90F383B5212EBB2300D92DD1 /* main.m */,
+				9024661B2134394100C45621 /* README.md */,
+				9024661A2134394100C45621 /* TZImagePreviewController.podspec */,
 			);
 			path = TZImagePreviewController;
 			sourceTree = "<group>";
@@ -175,6 +181,8 @@
 			files = (
 				90F383CB212EBCC500D92DD1 /* Main.storyboard in Resources */,
 				90F383B3212EBB2300D92DD1 /* LaunchScreen.storyboard in Resources */,
+				9024661D2134394100C45621 /* README.md in Resources */,
+				9024661C2134394100C45621 /* TZImagePreviewController.podspec in Resources */,
 				90F383B0212EBB2300D92DD1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,7 +397,10 @@
 				DEVELOPMENT_TEAM = T86X98NCU2;
 				INFOPLIST_FILE = TZImagePreviewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tanzhen.TZImagePreviewController.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -405,7 +416,10 @@
 				DEVELOPMENT_TEAM = T86X98NCU2;
 				INFOPLIST_FILE = TZImagePreviewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = tanzhen.TZImagePreviewController.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

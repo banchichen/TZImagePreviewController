@@ -8,8 +8,8 @@ Enhance the TZImagePickerController library, supports to preview photos with UII
 #### CocoaPods
 > pod 'TZImagePreviewController'
 
-#### Carthage
-> github "banchichen/TZImagePreviewController"
+<!--#### Carthage-->
+<!--> github "banchichen/TZImagePreviewController"-->
 
 #### 手动安装
 > 将TZImagePickerController文件夹拽入项目中，导入头文件：#import "TZImagePreviewController.h"
@@ -33,9 +33,9 @@ TZImagePreviewController *previewVc = [[TZImagePreviewController alloc] initWith
 ```
   
 ## 三. Requirements 要求
-   iOS 8 or later. Requires ARC  
-   iOS8及以上系统可使用. ARC环境.
+   iOS 8 or later. Requires ARC         
+   iOS8及以上系统可使用. ARC环境.         
 
 ## 四. More 更多 
-   There is Demo inside, Please refer to Demo for usage.
-   内有Demo，请参考Demo进行使用。
+   There is Demo inside, Please refer to Demo for usage.         
+   内有Demo，请参考Demo进行使用。     
