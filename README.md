@@ -1,15 +1,12 @@
 # TZImagePreviewController
 
-Enhance the TZImagePickerController library, supports to preview photos with UIImage or NSURL.     
+Enhance the [TZImagePickerController](https://github.com/banchichen/TZImagePickerController) library, supports to preview photos with UIImage or NSURL.     
 对[TZImagePickerController](https://github.com/banchichen/TZImagePickerController)库的增强，支持用UIImage、NSURL预览照片。     
 
 ## 一. Installation 安装
 
 #### CocoaPods
 > pod 'TZImagePreviewController'
-
-<!--#### Carthage-->
-<!--> github "banchichen/TZImagePreviewController"-->
 
 #### 手动安装
 > 将TZImagePickerController文件夹拽入项目中，导入头文件：#import "TZImagePreviewController.h"
