@@ -15,6 +15,7 @@
 #import "TZAssetCell.h"
 #import "TZImagePreviewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIImage+GIF.h>
 
 @interface ViewController ()<TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate> {
     CGFloat _itemWH;
@@ -32,8 +33,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     _selectedPhotos = [NSMutableArray array];
+    [self.selectedPhotos addObject:[NSURL URLWithString:@"http://wx1.sinaimg.cn/bmiddle/784fda03gy1fuoxgoy1f4g209u04snpe.gif"]];
     [self.selectedPhotos addObject:[UIImage imageNamed:@"photo_delete"]];
     [self.selectedPhotos addObject:[NSURL URLWithString:@"https://github.com/banchichen/TZImagePickerController/raw/master/TZImagePickerController/ScreenShots/photoPickerVc.PNG"]];
+    [self.selectedPhotos addObject:[NSURL URLWithString:@"http://ww1.sinaimg.cn/bmiddle/b2664ecdly1fuphxvilsdg204306v1kx.gif"]];
     [self configCollectionView];
 }
 
@@ -84,7 +87,7 @@
         if ([photo isKindOfClass:[UIImage class]]) {
             cell.imageView.image = photo;
         } else if ([photo isKindOfClass:[NSURL class]]) {
-            [cell.imageView sd_setImageWithURL:(NSURL *)photo];
+            [self configImageView:cell.imageView URL:(NSURL *)photo completion:nil];
         } else if ([photo isKindOfClass:[PHAsset class]]) {
             [[TZImageManager manager] getPhotoWithAsset:photo photoWidth:100 completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
                 cell.imageView.image = photo;
@@ -113,8 +116,8 @@
             self.isSelectOriginalPhoto = isSelectOriginalPhoto;
             NSLog(@"预览页 返回 isSelectOriginalPhoto:%d", isSelectOriginalPhoto);
         }];
-        [previewVc setSetImageWithURLBlock:^(NSURL *URL, UIImageView *imageView) {
-            [imageView sd_setImageWithURL:URL];
+        [previewVc setSetImageWithURLBlock:^(NSURL *URL, UIImageView *imageView, void (^completion)(void)) {
+            [self configImageView:imageView URL:URL completion:completion];
         }];
         [previewVc setDoneButtonClickBlock:^(NSArray *photos, BOOL isSelectOriginalPhoto) {
             self.isSelectOriginalPhoto = isSelectOriginalPhoto;
@@ -123,6 +126,26 @@
             [self.collectionView reloadData];
         }];
         [self presentViewController:previewVc animated:YES completion:nil];
+    }
+}
+
+- (void)configImageView:(UIImageView *)imageView URL:(NSURL *)URL completion:(void (^)(void))completion{
+    if ([URL.absoluteString.lowercaseString hasSuffix:@"gif"]) {
+        // 先显示静态图占位
+        [[SDWebImageManager sharedManager] loadImageWithURL:URL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            if (!imageView.image) {
+                imageView.image = image;
+            }
+        }];
+        // 动图加载完再覆盖掉
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:URL options:0 progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+            imageView.image = [UIImage sd_animatedGIFWithData:data];
+            if (completion) {
+                completion();
+            }
+        }];
+    } else {
+        [imageView sd_setImageWithURL:URL];
     }
 }
 

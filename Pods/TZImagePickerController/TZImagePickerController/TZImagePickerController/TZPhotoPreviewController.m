@@ -382,12 +382,16 @@
         [_tzImagePickerVc addSelectedModel:model];
     }
     if (_tzImagePickerVc.allowCrop) { // 裁剪状态
+        _doneButton.enabled = NO;
+        [_tzImagePickerVc showProgressHUD];
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_currentIndex inSection:0];
         TZPhotoPreviewCell *cell = (TZPhotoPreviewCell *)[_collectionView cellForItemAtIndexPath:indexPath];
         UIImage *cropedImage = [TZImageCropManager cropImageView:cell.previewView.imageView toRect:_tzImagePickerVc.cropRect zoomScale:cell.previewView.scrollView.zoomScale containerView:self.view];
         if (_tzImagePickerVc.needCircleCrop) {
             cropedImage = [TZImageCropManager circularClipImage:cropedImage];
         }
+        _doneButton.enabled = YES;
+        [_tzImagePickerVc hideProgressHUD];
         if (self.doneButtonClickBlockCropMode) {
             TZAssetModel *model = _models[_currentIndex];
             self.doneButtonClickBlockCropMode(cropedImage,model.asset);

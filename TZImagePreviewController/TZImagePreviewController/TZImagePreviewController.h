@@ -25,7 +25,7 @@
 @property (nonatomic, assign) BOOL isSelectOriginalPhoto;
 
 /// 传入的photos有NSURL对象时会触发，请使用你依赖的图片库给imageView设置图片
-@property (nonatomic, copy) void (^setImageWithURLBlock)(NSURL *URL, UIImageView *imageView);
+@property (nonatomic, copy) void (^setImageWithURLBlock)(NSURL *URL, UIImageView *imageView, void (^completion)(void));
 /// 用户点击了返回按钮
 @property (nonatomic, copy) void (^backButtonClickBlock)(BOOL isSelectOriginalPhoto);
 /// 用户点击了完成按钮

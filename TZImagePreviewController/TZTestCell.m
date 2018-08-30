@@ -62,7 +62,12 @@
         _gifLable.hidden = ![[asset valueForKey:@"filename"] containsString:@"GIF"];
     } else {
         _videoImageView.hidden = YES;
-        _gifLable.hidden = YES;
+        if ([asset isKindOfClass:[NSURL class]]) {
+            NSURL *URL = (NSURL *)asset;
+            _gifLable.hidden = ![URL.absoluteString.lowercaseString hasSuffix:@"gif"];
+        } else {
+            _gifLable.hidden = YES;
+        }
     }
 }
 

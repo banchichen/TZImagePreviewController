@@ -340,7 +340,7 @@
     
     if ([photo isKindOfClass:[PHAsset class]]) {
         PHAsset *asset = (PHAsset *)photo;
-        TZAssetModel *model = [self createModelWithAsset:asset];
+        TZAssetModel *model = [[TZImageManager manager] createModelWithAsset:asset];
         
         if (_tzImagePickerVc.allowPickingMultipleVideo && model.type == TZAssetModelMediaTypeVideo) {
             cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TZVideoPreviewCell" forIndexPath:indexPath];
@@ -376,7 +376,9 @@
             photoPreviewCell.previewView.imageView.image = (UIImage *)photo;
         } else if ([photo isKindOfClass:[NSURL class]]) {
             if (self.setImageWithURLBlock) {
-                self.setImageWithURLBlock((NSURL *)photo, photoPreviewCell.previewView.imageView);
+                self.setImageWithURLBlock((NSURL *)photo, photoPreviewCell.previewView.imageView, ^{
+                    [photoPreviewCell recoverSubviews];
+                });
             } else {
                 photoPreviewCell.previewView.imageView.image = nil;
                 NSLog(@"【TZImagePreviewController】传入的photos有NSURL对象，请参照Demo实现setImageWithURLBlock！");
@@ -471,19 +473,11 @@
     id photo = _photos[_currentIndex];
     if ([photo isKindOfClass:[PHAsset class]]) {
         PHAsset *asset = (PHAsset *)photo;
-        TZAssetModel *model = [self createModelWithAsset:asset];
+        TZAssetModel *model = [[TZImageManager manager] createModelWithAsset:asset];
         [[TZImageManager manager] getPhotosBytesWithArray:@[model] completion:^(NSString *totalBytes) {
             self->_originalPhotoLabel.text = [NSString stringWithFormat:@"(%@)",totalBytes];
         }];
     }
-}
-
-- (TZAssetModel *)createModelWithAsset:(PHAsset *)asset {
-    TZAssetModelMediaType type = [[TZImageManager manager] getAssetType:asset];
-    NSString *timeLength = type == TZAssetModelMediaTypeVideo ? [NSString stringWithFormat:@"%0.0f",asset.duration] : @"";
-    timeLength = [[TZImageManager manager] getNewTimeFromDurationSecond:timeLength.integerValue];
-    TZAssetModel *model = [TZAssetModel modelWithAsset:asset type:type timeLength:timeLength];
-    return model;
 }
 
 @end
