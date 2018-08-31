@@ -145,7 +145,11 @@
             }
         }];
     } else {
-        [imageView sd_setImageWithURL:URL];
+        [imageView sd_setImageWithURL:URL completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            if (completion) {
+                completion();
+            }
+        }];
     }
 }
 
