@@ -422,8 +422,8 @@
     _selectButton.selected = [self.tempPhotos containsObject:photo];
     [self refreshSelectButtonImageViewContentMode];
     if (_selectButton.isSelected && _tzImagePickerVc.showSelectedIndex && _tzImagePickerVc.showSelectBtn) {
-        NSString *index = [NSString stringWithFormat:@"%zd", [self.tempPhotos indexOfObject:photo] + 1];
-        _indexLabel.text = index;
+//        NSString *index = [NSString stringWithFormat:@"%zd", [self.tempPhotos indexOfObject:photo] + 1];
+        _indexLabel.text = [NSString stringWithFormat:@"%zd", _currentIndex + 1];
         _indexLabel.hidden = NO;
     } else {
         _indexLabel.hidden = YES;
