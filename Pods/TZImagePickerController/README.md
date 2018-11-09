@@ -6,11 +6,11 @@
  A clone of UIImagePickerController, support picking multiple photos、original photo、video, also allow preview photo and video, support iOS6+.   
  一个支持多选、选原图和视频的图片选择器，同时有预览功能，支持iOS6+。
  
- ## 重要提示1：提issue前，请先对照Demo、常见问题自查！Demo正常说明你可以升级下新版试试，还有问题请按下面要求提issue。Demo不正常的，如有改动过代码请贴上，描述清楚复现步骤。          
-  
- ## 重要提示2：issue未说明下面必要情况的不予处理：1、我的demo是否正常？ 2、你用的什么版本？ 3、你的初始化TZImagePicker的代码 4、你是pod安装还是源码导入的？是否有改动TZImagePicker内部代码？                 
+ ## 重要提示1：提issue前，请先对照Demo、常见问题自查！Demo正常说明你可以升级下新版试试。          
+   
+ ## 重要提示2：1.9.0版本后移除了"prefs:root="的调用，这个API已经被列为私有API，请大家尽快升级。
  
- ## 重要提示3：1.9.0版本后移除了"prefs:root="的调用，这个API已经被列为私有API，请大家尽快升级。
+ ## 重要提示3：3.0.7版本适配了iPhoneXR、XS、XS Max，建议大家尽快更新            
  
      关于升级iOS10和Xcdoe8的提示:    
  在Xcode8环境下将项目运行在iOS10的设备/模拟器中，访问相册和相机需要额外配置info.plist文件。分别是Privacy - Photo Library Usage Description和Privacy - Camera Usage Description字段，详见Demo中info.plist中的设置。
@@ -22,7 +22,8 @@
 ## 一. Installation 安装
 
 #### CocoaPods
-> pod 'TZImagePickerController'
+> pod 'TZImagePickerController'   #iOS8 and later        
+> pod 'TZImagePickerController', '2.2.6'   #iOS6、iOS7        
 
 #### Carthage
 > github "banchichen/TZImagePickerController"
@@ -49,6 +50,13 @@
    When system version is iOS8 or later, Using PhotoKit.  
    如果运行在iOS6或7系统上，用的是AssetsLibrary库获取照片资源。  
    如果运行在iOS8及以上系统上，用的是PhotoKit库获取照片资源。
+   
+   TZImagePickerController uses Camera、Location、Microphone、Photo Library，you need add these properties to info.plist like Demo：       
+   TZImagePickerController使用了相机、定位、麦克风、相册，请参考Demo添加下列属性到info.plist文件：        
+   	`Privacy - Camera Usage Description`     
+	`Privacy - Location When In Use Usage Description`    
+ 	`Privacy - Microphone Usage Description`   
+ 	`Privacy - Photo Library Usage Description`   
    
 ## 四. More 更多 
 
@@ -116,11 +124,19 @@ A：是否有集成GKNavigationBarViewController？需要升级到2.0.4及以上
 A：升级到2.2.6及以上版本试试，发现是修正视频转向导致的，2.2.6开始默认不再主动修正。如需打开，可设置needFixComposition为YES，但有几率导致安卓拍的视频导出失败。       
 
 **Q：视频导出慢？**            
-A：视频导出分两步，第一步是通过PHAsset获取AVURLAsset，如是iCloud视频则涉及到网络请求，耗时容易不可控，第二步是通过AVURLAsset把视频保存到沙盒，耗时不算多。但第一步耗时不可控，你可以拷贝我源码出来拿到第一步的进度给用户一个进度提示...          
+A：视频导出分两步，第一步是通过PHAsset获取AVURLAsset，如是iCloud视频则涉及到网络请求，耗时容易不可控，第二步是通过AVURLAsset把视频保存到沙盒，耗时不算多。但第一步耗时不可控，你可以拷贝我源码出来拿到第一步的进度给用户一个进度提示...     
+
+**Q：有的图片info里没有PHImageFileURLKey？**            
+A：不要去拿PHImageFileURLKey，没用的，只有通过Photos框架才能访问相册照片，光拿一个路径没用。        
+如果需要通过路径上传照片，请先把UIImage保存到沙盒，**用沙盒路径**。           
+如果你上传照片需要一个名字参数，请参考Demo**直接用照片名字**。          
 
 ## 六. Release Notes 最近更新     
 
-3.0.2 优化保存照片、视频的方法        
+3.1.1 适配阿拉伯等语言下从右往左布局的特性         
+3.0.8 新增gifImagePlayBlock允许使用FLAnimatedImage等替换内部的GIF播放方案         
+**3.0.7 适配iPhoneXR、XS、XS Max，建议大家尽快更新**           
+3.0.6 优化保存照片、视频的方法        
 3.0.1 新增对[TZImagePreviewController](https://github.com/banchichen/TZImagePreviewController)库的支持，允许预览UIImage、NSURL、PHAsset对象       
 **3.0.0 去除iOS6和7的适配代码，更轻量，最低支持iOS8**      
 2.2.6 新增needFixComposition属性，默认为NO，不再主动修正视频转向，防止部分安卓拍的视频导出失败（**最后一个支持iOS6和7的版本**）          

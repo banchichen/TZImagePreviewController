@@ -145,6 +145,14 @@ static CGFloat itemMargin = 5;
     return NO;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    TZImagePickerController *tzImagePicker = (TZImagePickerController *)self.navigationController;
+    if (tzImagePicker && [tzImagePicker isKindOfClass:[TZImagePickerController class]]) {
+        return tzImagePicker.statusBarStyle;
+    }
+    return [super preferredStatusBarStyle];
+}
+
 - (void)configCollectionView {
     _layout = [[UICollectionViewFlowLayout alloc] init];
     _collectionView = [[TZCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_layout];
@@ -203,7 +211,7 @@ static CGFloat itemMargin = 5;
     
     if (tzImagePickerVc.allowPickingOriginalPhoto) {
         _originalPhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _originalPhotoButton.imageEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+        _originalPhotoButton.imageEdgeInsets = UIEdgeInsetsMake(0, [TZCommonTools tz_isRightToLeftLayout] ? 10 : -10, 0, 0);
         [_originalPhotoButton addTarget:self action:@selector(originalPhotoButtonClick) forControlEvents:UIControlEventTouchUpInside];
         _originalPhotoButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_originalPhotoButton setTitle:tzImagePickerVc.fullImageBtnTitleStr forState:UIControlStateNormal];
@@ -670,7 +678,6 @@ static CGFloat itemMargin = 5;
             self.imagePickerVc.videoMaximumDuration = tzImagePickerVc.videoMaximumDuration;
         }
         self.imagePickerVc.mediaTypes= mediaTypes;
-        _imagePickerVc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         if (tzImagePickerVc.uiImagePickerControllerSettingBlock) {
             tzImagePickerVc.uiImagePickerControllerSettingBlock(_imagePickerVc);
         }
