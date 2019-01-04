@@ -53,6 +53,8 @@
     _deleteBtn.frame = CGRectMake(self.tz_width - 36, 0, 36, 36);
     CGFloat width = self.tz_width / 3.0;
     _videoImageView.frame = CGRectMake(width, width, width, width);
+    [self bringSubviewToFront:_videoImageView];
+    _playerLayer.frame = self.bounds;
 }
 
 - (void)setAsset:(PHAsset *)asset {
@@ -61,13 +63,41 @@
         _videoImageView.hidden = asset.mediaType != PHAssetMediaTypeVideo;
         _gifLable.hidden = ![[asset valueForKey:@"filename"] containsString:@"GIF"];
     } else {
-        _videoImageView.hidden = YES;
         if ([asset isKindOfClass:[NSURL class]]) {
             NSURL *URL = (NSURL *)asset;
             _gifLable.hidden = ![URL.absoluteString.lowercaseString hasSuffix:@"gif"];
         } else {
             _gifLable.hidden = YES;
         }
+    }
+    [self configMoviePlayer];
+}
+
+- (void)setVideoURL:(NSURL *)videoURL {
+    _videoURL = videoURL;
+    [self configMoviePlayer];
+}
+
+- (void)configMoviePlayer {
+    if (_player) {
+        [_playerLayer removeFromSuperlayer];
+        _playerLayer = nil;
+        [_player pause];
+        _player = nil;
+    }
+    
+    self.videoImageView.hidden = !self.videoURL;
+    if (self.videoURL) {
+        // 这个处理比较耗内存，最好是只用UIImageView显示视频的封面(服务端返回)，不创建AVPlayer
+        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:self.videoURL];
+        self.player = [AVPlayer playerWithPlayerItem:playerItem];
+        self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+        self.playerLayer.backgroundColor = [UIColor blackColor].CGColor;
+        self.playerLayer.frame = self.bounds;
+        [self.layer addSublayer:self.playerLayer];
+        // 如cell内也需要播放视频，打开下面的注释即可，需注意会导致内存升高。同时需监听播放结束、应用回到后台的通知，将播放重置到起点或暂停，参考TZVideoPreviewCell内的处理
+        // [self.player play];
+        // self.videoImageView.hidden = YES;
     }
 }
 

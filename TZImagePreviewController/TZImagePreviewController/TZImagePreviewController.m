@@ -4,7 +4,7 @@
 //
 //  Created by 谭真 on 18/08/23.
 //  Copyright © 2018年 谭真. All rights reserved.
-//
+//  version 0.3.0 - 2019.01.04
 
 #import "TZImagePreviewController.h"
 #import "TZPhotoPreviewCell.h"
@@ -12,6 +12,7 @@
 #import "UIView+Layout.h"
 #import "TZImagePickerController.h"
 #import "TZImageManager.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface TZImagePreviewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate> {
     UICollectionView *_collectionView;
@@ -41,6 +42,8 @@
 @property (nonatomic, assign) double progress;
 @property (strong, nonatomic) UIAlertController *alertView;
 @property (nonatomic, strong) NSMutableArray *tempPhotos;
+
+@property (nonatomic, strong) NSArray *videoSuffixs;
 @end
 
 @implementation TZImagePreviewController
@@ -57,6 +60,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.videoSuffixs = @[@"mov",@"mp4",@"rmvb",@"rm",@"flv",@"avi",@"3gp",@"wmv",@"mpeg1",@"mpeg2",@"mpeg4(mp4)",                                 @"asf",@"swf",@"vob",@"dat",@"m4v",@"f4v",@"mkv",@"mts",@"ts"];
     [TZImageManager manager].shouldFixOrientation = YES;
     self.tempPhotos = [NSMutableArray arrayWithArray:self.photos];
     if (!_didSetIsSelectOriginalPhoto) {
@@ -372,16 +376,23 @@
     } else {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TZPhotoPreviewCell" forIndexPath:indexPath];
         TZPhotoPreviewCell *photoPreviewCell = (TZPhotoPreviewCell *)cell;
+        photoPreviewCell.previewView.imageView.backgroundColor = [UIColor colorWithWhite:1.000 alpha:0.500];
         if ([photo isKindOfClass:[UIImage class]]) {
             photoPreviewCell.previewView.imageView.image = (UIImage *)photo;
         } else if ([photo isKindOfClass:[NSURL class]]) {
-            if (self.setImageWithURLBlock) {
-                self.setImageWithURLBlock((NSURL *)photo, photoPreviewCell.previewView.imageView, ^{
+            NSURL *URL = (NSURL *)photo;
+            NSString *suffix = [[URL.absoluteString.lowercaseString componentsSeparatedByString:@"."] lastObject];
+            if (suffix && [self.videoSuffixs containsObject:suffix]) {
+                cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TZVideoPreviewCell" forIndexPath:indexPath];
+                TZVideoPreviewCell *videoCell = (TZVideoPreviewCell *)cell;
+                videoCell.videoURL = URL;
+            } else if (self.setImageWithURLBlock) {
+                self.setImageWithURLBlock(URL, photoPreviewCell.previewView.imageView, ^{
                     [photoPreviewCell recoverSubviews];
                 });
             } else {
                 photoPreviewCell.previewView.imageView.image = nil;
-                NSLog(@"【TZImagePreviewController】传入的photos有NSURL对象，请参照Demo实现setImageWithURLBlock！");
+                NSLog(@"【TZImagePreviewController】传入的photos有NSURL对象且不是视频，请参照Demo实现setImageWithURLBlock！");
             }
         } else {
             photoPreviewCell.previewView.imageView.image = nil;

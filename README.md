@@ -1,8 +1,8 @@
 # TZImagePreviewController
 [![CocoaPods](https://img.shields.io/cocoapods/v/TZImagePreviewController.svg?style=flat)](https://github.com/banchichen/TZImagePreviewController)
 
-Enhance the [TZImagePickerController](https://github.com/banchichen/TZImagePickerController) library, supports to preview photos with UIImage or NSURL.     
-对[TZImagePickerController](https://github.com/banchichen/TZImagePickerController)库的增强，支持用UIImage、NSURL预览照片。     
+Enhance the [TZImagePickerController](https://github.com/banchichen/TZImagePickerController) library, supports to preview photo by UIImage or NSURL and preview video by NSURL.     
+对[TZImagePickerController](https://github.com/banchichen/TZImagePickerController)库的增强，支持用UIImage、NSURL预览照片和用NSURL预览视频。     
 
 ## 一. Installation 安装
 

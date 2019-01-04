@@ -90,17 +90,8 @@ A：3.0.1版本已支持，需新接一个库：[TZImagePreviewController](https
 **Q：设置可选视频的最大/最小时长？照片的最小/最大尺寸？不符合要求的不显示**       
 A：可以的，参照Demo的isAssetCanSelect方法实现。我会返回asset出来，显示与否你来决定，注意这个是一个同步方法，对于需要根据asset去异步获取的信息如视频的大小、视频是否存在iCloud里来过滤的，无法做到。如果真要这样做，相册打开速度会变慢，你需要改我源码。
 
-**Q：可否支持横屏？**        
-A：1.8.4版本已支持    
-
-**Q：可否加入视频拍摄功能？**      
-A：2.1.0.3版本已支持，设置allowTakeVideo为YES    
-
-**Q：可否加入视频多选功能？**         
-A：1.8.4版本已支持，设置allowPickingMultipleVideo为YES     
-
-**Q：可否让视频和图片允许一起选？**         
-A：1.8.4版本已支持，设置allowPickingMultipleVideo为YES      
+**Q：预览页面出现了导航栏？**        
+A：https://github.com/banchichen/TZImagePickerController/issues/652         
    
 **Q：可否增加微信编辑图片的功能？**           
 A：考虑下，优先级低  
@@ -133,7 +124,9 @@ A：不要去拿PHImageFileURLKey，没用的，只有通过Photos框架才能�
 
 ## 六. Release Notes 最近更新     
 
-3.1.1 适配阿拉伯等语言下从右往左布局的特性         
+3.1.7 批量获取图片时加入队列控制，尝试优化大批量选择图片时CPU和内存占用过高的问题（仍然危险，maxImagesCount谨慎设置过大...）             
+3.1.5 相册内无照片时给出提示，修复快速滑动时内存一直增加的问题           
+3.1.3 适配阿拉伯等语言下从右往左布局的特性         
 3.0.8 新增gifImagePlayBlock允许使用FLAnimatedImage等替换内部的GIF播放方案         
 **3.0.7 适配iPhoneXR、XS、XS Max，建议大家尽快更新**           
 3.0.6 优化保存照片、视频的方法        

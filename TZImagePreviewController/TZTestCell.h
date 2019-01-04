@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface TZTestCell : UICollectionViewCell
 
@@ -16,5 +17,8 @@
 @property (nonatomic, strong) UILabel *gifLable;
 @property (nonatomic, strong) id asset;
 
+@property (nonatomic, strong) NSURL *videoURL;
+@property (nonatomic, strong) AVPlayer *player;
+@property (nonatomic, strong) AVPlayerLayer *playerLayer;
 @end
 
