@@ -4,14 +4,14 @@
 //
 //  Created by 谭真 on 18/08/23.
 //  Copyright © 2018年 谭真. All rights reserved.
-//  version 0.3.0 - 2019.01.04
+//  version 0.3.1 - 2020.02.11
 
 #import "TZImagePreviewController.h"
-#import "TZPhotoPreviewCell.h"
-#import "TZAssetModel.h"
-#import "UIView+Layout.h"
-#import "TZImagePickerController.h"
-#import "TZImageManager.h"
+#import <TZImagePickerController/TZPhotoPreviewCell.h>
+#import <TZImagePickerController/TZAssetModel.h>
+#import <TZImagePickerController/UIView+Layout.h>
+#import <TZImagePickerController/TZImagePickerController.h>
+#import <TZImagePickerController/TZImageManager.h>
 #import <AVFoundation/AVFoundation.h>
 
 @interface TZImagePreviewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate> {
