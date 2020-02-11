@@ -32,4 +32,5 @@
 /// 用户点击了完成按钮
 @property (nonatomic, copy) void (^doneButtonClickBlock)(NSArray *photos,BOOL isSelectOriginalPhoto);
 
+- (void)doneButtonClick;
 @end
