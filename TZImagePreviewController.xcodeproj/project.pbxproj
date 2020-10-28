@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -141,7 +141,6 @@
 				90F3839F212EBB2200D92DD1 /* Sources */,
 				90F383A0212EBB2200D92DD1 /* Frameworks */,
 				90F383A1212EBB2200D92DD1 /* Resources */,
-				60894EFD35715BB897F43622 /* [CP] Embed Pods Frameworks */,
 				04A4EA44514250AECD84432D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -207,29 +206,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TZImagePreviewController/Pods-TZImagePreviewController-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TZImagePreviewController/Pods-TZImagePreviewController-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TZImagePreviewController/Pods-TZImagePreviewController-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		60894EFD35715BB897F43622 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TZImagePreviewController/Pods-TZImagePreviewController-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TZImagePreviewController/Pods-TZImagePreviewController-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F043CC0D23883D5D9F32514C /* [CP] Check Pods Manifest.lock */ = {
@@ -410,7 +396,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.1;
+				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tanzhen.TZImagePreviewController.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -430,7 +416,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.1;
+				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tanzhen.TZImagePreviewController.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
