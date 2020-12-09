@@ -4,12 +4,12 @@
 //
 //  Created by 谭真 on 18/08/23.
 //  Copyright © 2018年 谭真. All rights reserved.
-//  version 0.4.0 - 2020.10.28
+//  version 0.5.0 - 2020.12.09
 
 #import "TZImagePreviewController.h"
 #import <TZImagePickerController/TZPhotoPreviewCell.h>
 #import <TZImagePickerController/TZAssetModel.h>
-#import <TZImagePickerController/UIView+Layout.h>
+#import <TZImagePickerController/UIView+TZLayout.h>
 #import <TZImagePickerController/TZImagePickerController.h>
 #import <TZImagePickerController/TZImageManager.h>
 #import <AVFoundation/AVFoundation.h>

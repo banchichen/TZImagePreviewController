@@ -8,7 +8,7 @@
 
 #import "TZVideoPlayerController.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import "UIView+Layout.h"
+#import "UIView+TZLayout.h"
 #import "TZImageManager.h"
 #import "TZAssetModel.h"
 #import "TZImagePickerController.h"
@@ -170,6 +170,7 @@
     CMTime currentTime = _player.currentItem.currentTime;
     CMTime durationTime = _player.currentItem.duration;
     if (_player.rate == 0.0f) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"TZ_VIDEO_PLAY_NOTIFICATION" object:_player];
         if (currentTime.value == durationTime.value) [_player.currentItem seekToTime:CMTimeMake(0, 1)];
         [_player play];
         [self.navigationController setNavigationBarHidden:YES];
@@ -182,6 +183,9 @@
 }
 
 - (void)doneButtonClick {
+    if ([[TZImageManager manager] isAssetCannotBeSelected:_model.asset]) {
+        return;
+    }
     if (self.navigationController) {
         TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
         if (imagePickerVc.autoDismiss) {
