@@ -2,11 +2,11 @@ PODS:
   - SDWebImage (4.4.3):
     - SDWebImage/Core (= 4.4.3)
   - SDWebImage/Core (4.4.3)
-  - TZImagePickerController (3.6.7)
+  - TZImagePickerController (3.6.8)
 
 DEPENDENCIES:
   - SDWebImage (= 4.4.3)
-  - TZImagePickerController (= 3.6.7)
+  - TZImagePickerController (= 3.6.8)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
