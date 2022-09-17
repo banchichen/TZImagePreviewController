@@ -54,6 +54,7 @@
         self.photos = [NSMutableArray arrayWithArray:photos];
         self.currentIndex = currentIndex;
         self.tzImagePickerVc = tzImagePickerVc;
+        self.isNeedShowToolbar = YES;
     }
     return self;
 }
@@ -312,7 +313,11 @@
 - (void)didTapPreviewCell {
     self.isHideNaviBar = !self.isHideNaviBar;
     _naviBar.hidden = self.isHideNaviBar;
-    _toolBar.hidden = self.isHideNaviBar;
+    if (self.isNeedShowToolBar) {
+        _toolBar.hidden = self.isHideNaviBar;
+    } else {
+        _toolBar.hidden = YES;
+    }
 }
 
 #pragma mark - UIScrollViewDelegate

@@ -25,6 +25,9 @@
 /// 是否选择了原图
 @property (nonatomic, assign) BOOL isSelectOriginalPhoto;
 
+/// 是否显示toolbar
+@property (nonatomic, assign) BOOL isNeedShowToolbar;
+
 /// 传入的photos有NSURL对象时会触发，请使用你依赖的图片库给imageView设置图片
 @property (nonatomic, copy) void (^setImageWithURLBlock)(NSURL *URL, UIImageView *imageView, void (^completion)(void));
 /// 用户点击了返回按钮
