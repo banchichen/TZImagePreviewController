@@ -4,7 +4,7 @@
 //
 //  Created by 谭真 on 18/08/23.
 //  Copyright © 2018年 谭真. All rights reserved.
-//  version 0.5.1 - 2021.11.27
+//  version 0.5.2 - 2022.09.19
 //  更多信息，请前往项目的github地址：https://github.com/banchichen/TZImagePreviewController
 
 #import <UIKit/UIKit.h>
@@ -25,7 +25,7 @@
 /// 是否选择了原图
 @property (nonatomic, assign) BOOL isSelectOriginalPhoto;
 
-/// 是否显示toolbar
+/// 是否需要显示底部的toolbar，默认YES
 @property (nonatomic, assign) BOOL isNeedShowToolbar;
 
 /// 传入的photos有NSURL对象时会触发，请使用你依赖的图片库给imageView设置图片

@@ -123,30 +123,19 @@
             [self.selectedPhotos addObjectsFromArray:assets];
             [self.collectionView reloadData];
         }];
+        imagePickerVc.modalPresentationStyle = UIModalPresentationFullScreen;
         [self presentViewController:imagePickerVc animated:YES completion:nil];
     } else { // 预览
         TZImagePickerController *imagePickerVc = [self createTZImagePickerController];
         imagePickerVc.maxImagesCount = 1;
         imagePickerVc.showSelectBtn = NO;
-        [imagePickerVc setPhotoPreviewPageDidLayoutSubviewsBlock:^(UICollectionView *collectionView, UIView *naviBar, UIButton *backButton, UIButton *selectButton, UILabel *indexLabel, UIView *toolBar, UIButton *originalPhotoButton, UILabel *originalPhotoLabel, UIButton *doneButton, UIImageView *numberImageView, UILabel *numberLabel) {
-            if (numberLabel) {
-                [numberLabel removeFromSuperview];
-                numberLabel = nil;
-            }
-            if (numberImageView) {
-                [numberImageView removeFromSuperview];
-                numberImageView = nil;
-            }
-            if (doneButton) {
-                [doneButton removeFromSuperview];
-                doneButton = nil;
-            }
-        }];
         TZImagePreviewController *previewVc = [[TZImagePreviewController alloc] initWithPhotos:self.selectedPhotos currentIndex:indexPath.row tzImagePickerVc:imagePickerVc];
+        previewVc.modalPresentationStyle = UIModalPresentationFullScreen;
         [previewVc setBackButtonClickBlock:^(BOOL isSelectOriginalPhoto) {
             self.isSelectOriginalPhoto = isSelectOriginalPhoto;
             NSLog(@"预览页 返回 isSelectOriginalPhoto:%d", isSelectOriginalPhoto);
         }];
+        previewVc.isNeedShowToolbar = NO;
         [previewVc setSetImageWithURLBlock:^(NSURL *URL, UIImageView *imageView, void (^completion)(void)) {
             [self configImageView:imageView URL:URL completion:completion];
         }];

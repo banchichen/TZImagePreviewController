@@ -4,7 +4,7 @@
 //
 //  Created by 谭真 on 18/08/23.
 //  Copyright © 2018年 谭真. All rights reserved.
-//  version 0.5.1 - 2021.11.27
+//  version 0.5.2 - 2022.09.19
 
 #import "TZImagePreviewController.h"
 #import <TZImagePickerController/TZPhotoPreviewCell.h>
@@ -179,6 +179,9 @@
     [_toolBar addSubview:_numberImageView];
     [_toolBar addSubview:_numberLabel];
     [self.view addSubview:_toolBar];
+    if (!self.isNeedShowToolbar) {
+        _toolBar.hidden = YES;
+    }
     
     if (_tzImagePickerVc.photoPreviewPageUIConfigBlock) {
         _tzImagePickerVc.photoPreviewPageUIConfigBlock(_collectionView, _naviBar, _backButton, _selectButton, _indexLabel, _toolBar, _originalPhotoButton, _originalPhotoLabel, _doneButton, _numberImageView, _numberLabel);
@@ -313,7 +316,7 @@
 - (void)didTapPreviewCell {
     self.isHideNaviBar = !self.isHideNaviBar;
     _naviBar.hidden = self.isHideNaviBar;
-    if (self.isNeedShowToolBar) {
+    if (self.isNeedShowToolbar) {
         _toolBar.hidden = self.isHideNaviBar;
     } else {
         _toolBar.hidden = YES;

@@ -581,8 +581,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -649,8 +649,8 @@
 				FE080D01ECA45051467C1B6584A2B27B /* TZGifPhotoPreviewController.m in Sources */,
 				99DE65322067EDB9B2255A7D78485074 /* TZImageCropManager.m in Sources */,
 				E78C6CE87DF27038839E8C8FB8660118 /* TZImageManager.m in Sources */,
-				23D8271F7ECD5C3F4DDD4A41C3C96636 /* TZImagePickerController-dummy.m in Sources */,
 				6318C4DD228B89A1EB7C749ADA230C9C /* TZImagePickerController.m in Sources */,
+				23D8271F7ECD5C3F4DDD4A41C3C96636 /* TZImagePickerController-dummy.m in Sources */,
 				E3A2C0F2BB6754F7FF7126E9F7B3B8F8 /* TZImageRequestOperation.m in Sources */,
 				E1DB73CE13E94BC87C6FED2CE753EBDA /* TZLocationManager.m in Sources */,
 				7722D923503F5EE0CD9854BEDDCCC687 /* TZPhotoPickerController.m in Sources */,
